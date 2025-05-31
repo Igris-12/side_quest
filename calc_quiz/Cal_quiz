@@ -1,0 +1,55 @@
+#include <iostream>
+#include <chrono>
+#include <iomanip>
+#include <string>
+using namespace std ;
+
+
+int main() 
+
+{ int z,c=1;
+    
+
+    auto start = std::chrono::high_resolution_clock::now();
+    neww:
+
+    
+
+    
+        
+        cout<<endl<<c++<<"] Two numbers:";
+        srandom(time(0));
+        int x=random()%500;
+        int y=random()%500;
+        cout<<x<<" "<<y<<endl;
+        cout<<"i)-Addition\nii)-Subtraction\niii)-Multiplication\niv)-Divison\nv)-New";
+
+    do
+    {
+        cout<<"\n The choice:";
+        cin>>z;
+        switch(z)
+        {
+            case 1:cout<<endl<<x+y;break ;
+
+            ;
+            case 2:cout<<endl<<x-y;break;
+            case 3:cout<<endl<<x*y;break;
+            case 4:cout<<endl<<x/y;break;
+            case 5:goto neww;break;
+        }
+    }while(z!=6)   ;
+
+
+    auto end = chrono::high_resolution_clock::now();
+    chrono::duration<double> elapsed_time = end - start;
+
+    
+
+    cout << "\nTime: "<< setprecision(3) << elapsed_time.count() << " seconds.\n";
+
+    
+
+    return 0;
+}
+ 
