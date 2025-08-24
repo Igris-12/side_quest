@@ -1,4 +1,4 @@
-from PyPDF2 import PdfReader, PdfWriter
+from pypdf import PdfReader, PdfWriter
 import os
 #from sys import argv
 
@@ -8,17 +8,25 @@ def modify():
     i = int(input("Remove(0) or Select(1): "))
     modify = []
 
-    try:
-        while True:
-            pg = input("Enter the page to Modify: ")
-            modify.append(int(pg)-1)
-    except:
+    while True:
+        pg = input("Enter the page to Modify (or 'q' to quit): ")
+        if pg.lower() == 'q':
+            break
+        try:
+            if pg[0] == "*":
+                ll,up = (int(i) for i in pg[1:].split("_")) 
+                modify.extend(list(range(int(ll-1),up)))
+            else :
+                modify.append(int(pg) - 1)
+        except ValueError:
+            print("Invalid input. Please enter a valid number or 'q' to quit.")
+    
     # Open the PDF file
-        reader = PdfReader(input_pdf)
-        writer = PdfWriter()
+    reader = PdfReader(input_pdf)
+    writer = PdfWriter()
     
     # Iterate through all pages and add those not in pages_to_remove
-        for page_num in range(len(reader.pages)):
+    for page_num in range(len(reader.pages)):
             if i == 1 :
                 if page_num in modify:
                     writer.add_page(reader.pages[page_num])
@@ -26,7 +34,7 @@ def modify():
                 writer.add_page(reader.pages[page_num])
     
     # Save the new PDF without the removed pages
-        with open(output_pdf, "wb") as output_file:
+    with open(output_pdf, "wb") as output_file:
             writer.write(output_file)
 
 def merge():
