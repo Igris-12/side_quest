@@ -41,7 +41,7 @@ class MORSE
             MORSE()
             {
                 for( auto pair : Dmorse_Vocab )
-			        Emorse_Vocab[pair.second]=pair.first;
+			            Emorse_Vocab[pair.second]=pair.first;
             }
 			void Decode();
 			void Encode();
